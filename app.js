@@ -9,6 +9,11 @@ app.get('/query', function(req, response) {
         console.log("Got error: " + e.message);
 });
 
+app.post('/complete', function (req, response) {
+    console.log('received post request');
+    res.end();
+});
+
 app.use(express.static(__dirname + '/public'));
 
 
