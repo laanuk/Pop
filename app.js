@@ -1,16 +1,23 @@
 var express = require('express');
 var http = require('http');
 var app = express();
+var bodyParser = require("body-parser");
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.use( bodyParser.urlencoded({ extended : true }));
+
 
 // Routes
-app.get('/query', function(req, response) {
+app.get('/query', function(req, res) {
     console.log(req._parsedUrl.query);
     }).on('error', function(e) {
         console.log("Got error: " + e.message);
 });
 
-app.post('/complete', function (req, response) {
+app.post('/complete', function (req, res) {
     console.log('received post request');
+    var score = req.body.value;
+    console.log(score);
     res.end();
 });
 
